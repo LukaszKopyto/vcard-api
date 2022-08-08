@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+<h1>Test</h1>
+<button id="btn">get Vcard</button>
+<script>
+	const btn = document.getElementById('btn');
+	btn.addEventListener('click', async () => {
+		try {
+			const response = await axios.get('http://localhost:8000/api/vcardgenerate')
+			console.log('re', response.data);
+			const url = window.URL.createObjectURL(new Blob([response.data]));
+			const link = document.createElement('a');
+			link.href = url;
+			link.setAttribute('download', 'file.vcf');
+			document.body.appendChild(link);
+			link.click();
+		} catch (e) {
+			console.error(e)
+		}
+	})
+</script>
+</body>
+</html>
