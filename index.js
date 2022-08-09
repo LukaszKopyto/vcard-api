@@ -4,6 +4,8 @@ const app = express();
 const port = process.env.PORT || 8000;
 
 app.use(cors());
+app.use(express.static('vcard'))
+
 
 const user = {
 	firstName: 'Lukasz',
